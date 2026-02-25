@@ -16,3 +16,9 @@ export const fetchCityImage = (destination) =>
 
 export const sendItineraryEmail = (recipient, itinerary) =>
   api.post('/send-email', { recipient, itinerary })
+
+export const generatePackingList = (itinerary) =>
+  api.post('/packing-list', { itinerary })
+
+export const refineItinerary = (itinerary, message) =>
+  api.post('/refine', { itinerary, message })
