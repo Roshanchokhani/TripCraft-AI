@@ -13,12 +13,14 @@ TripCraft-AI/
 ├── backend/           # Python FastAPI
 │   ├── main.py
 │   ├── routers/       # itinerary, weather, email endpoints
-│   ├── services/      # AI, RAG, weather, email, Unsplash
+│   ├── services/      # AI, RAG, weather, email, Unsplash, packing, refine
 │   └── data/          # Travel knowledge base (RAG corpus)
 └── frontend/          # React + Vite + Tailwind CSS
     └── src/
         ├── pages/     # HomePage, ItineraryPage
-        ├── components/ # Navbar, Timeline, ActivityCard, WeatherWidget, EmailModal
+        ├── components/ # Navbar, Timeline, ActivityCard, WeatherWidget,
+        │               # EmailModal, PackingListModal, ChatPanel
+        ├── utils/     # exportPdf (jsPDF)
         ├── context/   # Google OAuth AuthContext
         └── api/       # Axios API client
 ```
@@ -43,6 +45,7 @@ TripCraft-AI/
 | Email | Gmail SMTP |
 | Weather | OpenWeatherMap API |
 | Images | Unsplash API |
+| PDF Export | jsPDF (client-side) |
 
 ---
 
@@ -106,6 +109,7 @@ Open **http://localhost:5173** in your browser.
 
 ## Features
 
+### Core Features
 - **AI Itinerary Generation** — Day-by-day plans with 4–6 activities per day, including meals
 - **RAG Enhancement** — Real travel knowledge injected into every AI prompt
 - **Weather Widget** — Live weather for the destination (OpenWeatherMap)
@@ -114,6 +118,11 @@ Open **http://localhost:5173** in your browser.
 - **Email Export** — Beautifully formatted HTML itinerary sent to your inbox
 - **Google Sign-In** — Secure SSO with Google OAuth 2.0
 - **Responsive Design** — Fully mobile-friendly
+
+### Bonus Features
+- **AI Packing List** — One click generates a categorized, interactive packing list tailored to your destination and activities; tick items off with a live progress bar
+- **PDF Export** — Download a beautifully branded, multi-page PDF of the full itinerary instantly (client-side, no extra API call)
+- **Refine with AI** — Floating chat panel that lets you modify the itinerary in natural language (e.g. *"Make Day 2 more budget-friendly"*); Gemini updates the timeline live
 
 ---
 
@@ -125,5 +134,7 @@ Open **http://localhost:5173** in your browser.
 | GET | `/api/weather?destination=` | Get current weather |
 | GET | `/api/city-image?destination=` | Get Unsplash city photo |
 | POST | `/api/send-email` | Email the itinerary |
+| POST | `/api/packing-list` | Generate AI packing list |
+| POST | `/api/refine` | Refine itinerary via natural language |
 
 Interactive docs: **http://localhost:8000/docs**
