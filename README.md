@@ -2,7 +2,7 @@
 
 > **Hackathon Submission** | AI / Generative AI Engineer Intern
 
-An intelligent travel planning application that generates personalised, day-by-day travel itineraries using **Google Gemini 1.5 Flash** and **Retrieval-Augmented Generation (RAG)**.
+An intelligent travel planning application that generates personalised, day-by-day travel itineraries using **Google Gemini 2.5 Flash Lite** and **Retrieval-Augmented Generation (RAG)**.
 
 ---
 
@@ -25,8 +25,8 @@ TripCraft-AI/
 
 ## How RAG Works in This App
 
-1. **Indexing** — On startup, 20+ curated travel knowledge documents (destination guides, cultural tips, interest-based guides) are embedded using Google's `text-embedding-004` model and stored in **ChromaDB**.
-2. **Retrieval** — When a user submits a destination + interests, we embed their query and perform a cosine-similarity search to retrieve the top 4 most relevant knowledge chunks.
+1. **Indexing** — On startup, 19 curated travel knowledge documents (destination guides, cultural tips, interest-based guides) are embedded using Google's `gemini-embedding-001` model and cached as NumPy vectors in memory.
+2. **Retrieval** — When a user submits a destination + interests, we embed their query with the same model and compute cosine similarity against all stored vectors to retrieve the top 4 most relevant knowledge chunks.
 3. **Augmented Generation** — The retrieved context is injected into the Gemini prompt, grounding the model's output with real, accurate travel knowledge and reducing hallucinations.
 
 ---
@@ -35,8 +35,8 @@ TripCraft-AI/
 
 | Layer | Technology |
 |-------|-----------|
-| AI Model | Google Gemini 1.5 Flash |
-| RAG Vector Store | ChromaDB + Google `text-embedding-004` |
+| AI Model | Google Gemini 2.5 Flash Lite |
+| RAG Vector Store | NumPy cosine similarity + Google `gemini-embedding-001` |
 | Backend | Python FastAPI |
 | Frontend | React + Vite + Tailwind CSS |
 | Auth | Google OAuth 2.0 (`@react-oauth/google`) |
