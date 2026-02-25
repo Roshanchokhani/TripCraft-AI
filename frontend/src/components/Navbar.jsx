@@ -43,7 +43,8 @@ export default function Navbar() {
                   <img
                     src={user.picture}
                     alt={user.name}
-                    className="w-8 h-8 rounded-full ring-2 ring-indigo-200"
+                    referrerPolicy="no-referrer"
+                    className="w-8 h-8 rounded-full ring-2 ring-indigo-200 object-cover"
                   />
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center">
